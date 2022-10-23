@@ -8,8 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS v5.2.1 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link href="bootstrap.min.css" rel="stylesheet">
 
 </head>
 
@@ -17,39 +16,73 @@
   <header>
     <h2 class="text-center">Generador de recibos de sueldo</h2>
   </header>
-  <main>
-    <div class="m-2">
+  <main >
+    <form id="anadirLuego" name="form" class="m-2">
         <label for="nombre" class="form-label">Nombre</label>
-        <input type="text"
-            class="form-control" name="nombre" i="nombre" aria-describedby="helpId" placeholder="Ingrese su nombre">
-        
-        <label for="apellido" class="form-label">Apellido</label>
-        <input type="text"
-            class="form-control" name="apellido" id="apellido" aria-describedby="helpId" placeholder="Ingrese su apellido">
-            
-        <label for="cuil" class="form-label">Cuil</label>
-        <input type="text"
-            class="form-control" name="cuil" id="cuil" aria-describedby="helpId" placeholder="Ingrese su cuil">
-        <small id="helpId" class="form-text text-muted">* Sin los guiones ni los puntos</small>
-        <br>
+      <input type="text"
+          class="form-control" name="nombre" id="nombre" aria-describedby="helpId" placeholder="Ingrese su nombre">
+      <label for="apellido" class="form-label">Apellido</label>
+      <input type="text"
+          class="form-control" name="apellido" id="apellido" aria-describedby="helpId" placeholder="Ingrese su apellido">
+          
+      <label for="cuil" class="form-label">Cuil</label>
+      <input type="text"
+          class="form-control" name="cuil" id="cuil" aria-describedby="helpId" placeholder="Ingrese su cuil">
+      <small id="helpId" class="form-text text-muted">* Sin los guiones ni los puntos</small>
+      <br>
 
         <label for="legajo" class="form-label">Legajo</label>
-        <input type="text"
-            class="form-control" name="legajo" id="legajo" aria-describedby="helpId" placeholder="Ingrese su legajo">
+      <input type="text"
+          class="form-control" name="legajo" id="legajo" aria-describedby="helpId" placeholder="Ingrese su legajo">
+          
+        <label for="fechaIngreso" class="form-label">Fecha de ingreso:</label>
+      <input type="date"
+        class="form-control" name="fechaIngreso" id="fechaIngreso" aria-describedby="helpId" placeholder="Ingrese su sueldo basico">
+        
+  
+        <label for="sueldoBasico" class="form-label">Sueldo basico</label>
+      <input type="number"
+        class="form-control" name="sueldoBasico" id="sueldoBasico" aria-describedby="helpId" placeholder="Ingrese su sueldo basico">
+      
+        <label for="horaExtra100" class="form-label">Horas extra al 100%: </label>
+      <input type="number"
+        class="form-control" name="horaExtra100" id="horaExtra100" aria-describedby="helpId" placeholder="Ingrese su sueldo basico">
+      
+        <label for="horaExtra50" class="form-label">Horas extra al 50%: </label>
+      <input type="number"
+        class="form-control" name="horaExtra50" id="horaExtra50" aria-describedby="helpId" placeholder="Ingrese su sueldo basico">
+      
+        <label for="feriadosLV" class="form-label">Feriados de Lunes a Viernes: </label>
+      <input type="number"
+        class="form-control" name="feriadosLV" id="feriadosLV" aria-describedby="helpId" placeholder="Ingrese su sueldo basico">
+                  
+        <label for="feriadosS" class="form-label">Feriados en Sabado: </label>
+      <input type="number"
+        class="form-control" name="feriadosS" id="feriadosS" aria-describedby="helpId" placeholder="Ingrese su sueldo basico">
+        
+        <label for="faltasLV" class="form-label">Faltas de Lunes a Viernes: </label>
+      <input type="number"
+        class="form-control" name="faltasLV" id="faltasLV" aria-describedby="helpId" placeholder="Ingrese su sueldo basico">
+        
+        <label for="faltasLVJustificado" class="form-label">Faltas de Lunes a Viernes justificadas: </label>
+      <input type="number"
+        class="form-control" name="faltasLVJustificado" id="faltasLVJustificado" aria-describedby="helpId" placeholder="Ingrese su sueldo basico">
+        
 
-        <label for="cuil" class="form-label">Cuil</label>
-        <input type="text"
-            class="form-control" name="cuil" id="cuil" aria-describedby="helpId" placeholder="Ingrese su cuil">
-        <small id="helpId" class="form-text text-muted">* Sin los guiones ni los puntos</small>
-    </div>
+        <label for="faltasS" class="form-label">Faltas en un Sabado</label>
+      <input type="number"
+        class="form-control" name="faltasS" id="faltasS" aria-describedby="helpId" placeholder="Ingrese su sueldo basico">
+        
+        <label for="faltasSJustificado" class="form-label">Faltas en Sabado justificado</label>
+      <input type="number"
+        class="form-control" name="faltasSJustificado" id="faltasSJustificado" aria-describedby="helpId" placeholder="Ingrese su sueldo basico">
 
-    <button type="button" class="btn btn-primary" onclick="obtenerValores()">Calcular</button>
-
+      
+      <button type="submit" class="btn btn-primary m-4">Calcular</button>
+    </form>
+    
 
   </main>
-  <footer>
-    <!-- place footer here -->
-  </footer>
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
