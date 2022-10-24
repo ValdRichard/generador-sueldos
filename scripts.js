@@ -1,21 +1,18 @@
 var form = document.forms['form'];
 
+const diffDays = (date, otherDate) => Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24));
+
 form.onsubmit = function(e){
     e.preventDefault();
 
     let presentismo = 0.25;
 
     let nombre = document.getElementById("nombre").value;
-    nombre = "Ricardo"
     let apellido = document.getElementById("apellido").value;
-    nombre = "Ricardo"
     let cuil = document.getElementById("cuil").value;
-    nombre = "Ricardo"
     let legajo = document.getElementById("legajo").value;
-    nombre = "Ricardo"
-    let fechaIngreso = document.getElementById("fechaIngreso").value;
+    let fechaIngreso = new Date(document.getElementById("fechaIngreso").value);
     let sueldoBasico = parseInt(document.getElementById("sueldoBasico").value) || 0;
-    sueldoBasico = 100000
     let horaExtra100 = parseInt(document.getElementById("horaExtra100").value) || 0;
     let horaExtra50 = parseInt(document.getElementById("horaExtra50").value) || 0;
     let feriadosLV = parseInt(document.getElementById("feriadosLV").value) || 0;
@@ -72,7 +69,51 @@ form.onsubmit = function(e){
     feriadosS = (feriadosS*1.1) + (feriadosS*presentismo)
     
     let sueldoBruto = (sueldoBasico*1.1 + sueldoBasico*presentismo) + faltasLVJustificado + faltasSJustificado + horaExtra100 + horaExtra50 + feriadosLV + feriadosS
-    console.log(sueldoBruto)
+    
+
+    function getLastDayOfYear(year) {
+        return new Date(year, 11, 31);
+      }
+      
+    
+    const currentYear = new Date().getFullYear();
+    
+    var today = getLastDayOfYear(currentYear);
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today =  yyyy + '-' + mm + '-' + dd;
+
+    var dd2 = String(fechaIngreso.getDate() + 1).padStart(2, '0');
+    var mm2 = String(fechaIngreso.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy2 = fechaIngreso.getFullYear();
+
+    fechaIngreso = yyyy2 + '-' + mm2 + '-' + dd2;
+    
+
+    let diferencia = diffDays(new Date(fechaIngreso), new Date(today))
+    
+    let aguinaldo = sueldoBruto/2
+
+    let valorDiaVacaciones = (sueldoBasico*1.1 + sueldoBasico*presentismo)/22;
+    
+    let diasVacaciones = 0
+    
+    
+
+    if (diferencia < 184){
+        diasVacaciones = Math.floor(diferencia/22);
+    }
+    else if (diferencia >= 184 && diferencia < 1825){
+        diasVacaciones = 14
+    } else if(diferencia >= 1825 && diferencia < 3650){
+        diasVacaciones = 21
+    } else if(diferencia >= 3650){
+        diasVacaciones = 28
+    }
+
+    let vacaciones = diasVacaciones * valorDiaVacaciones;
 
     jubilacion = sueldoBruto * 0.11
 
@@ -81,9 +122,8 @@ form.onsubmit = function(e){
     obraSocial = sueldoBruto * 0.03
 
     let sueldoNeto = sueldoBruto - jubilacion - ley19032 - obraSocial
-    console.log(sueldoNeto)
-    document.getElementById("anadirLuego").insertAdjacentHTML("afterend",
-                `<div class="card bg-secondary m-2">
+
+    document.getElementById("carta").innerHTML=`<div class="card bg-secondary m-2">
                 <div class="card-body">
                   <h4 class="card-title text-center">Recibo</h4>
                   <div class="table-responsive">
@@ -162,7 +202,39 @@ form.onsubmit = function(e){
                       </tbody>
                     </table>
                   </div>
-                  
                 </div>
-              </div>`);
+              </div>`;
+}
+
+	
+form2.onsubmit = function(e){
+
+    e.preventDefault();
+
+    var nombreArchivo = document.getElementById('nombreArchivo').value
+    var formato = document.getElementById('formato').value
+    var orientacion = document.getElementById('orientacion').value
+    //credit : https://ekoopmans.github.io/html2pdf.js
+    
+    var element = document.getElementById('carta'); 
+
+    //easy
+    //html2pdf().from(element).save();
+
+    //custom file name
+    //html2pdf().set({filename: 'code_with_mark_'+js.AutoCode()+'.pdf'}).from(element).save();
+
+
+    //more custom settings
+    var opt = 
+    {
+        margin:       0,
+        filename:     `${nombreArchivo}.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: `${formato}`, orientation: `${orientacion}` }
+    };
+
+    // New Promise-based usage:
+    html2pdf().set(opt).from(element).save();
 }
