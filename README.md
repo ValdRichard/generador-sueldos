@@ -1,6 +1,6 @@
 # Generador de sueldos. 
 
-## ** Actividad realizada por los alumnos**
+## **Actividad realizada por los alumnos**
 
 ### Valdivia Ricardo - Figueroa Romina. 
 
