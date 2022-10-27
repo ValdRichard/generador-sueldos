@@ -1,0 +1,45 @@
+
+nav{
+    background-color: #78c2ad;
+    height: 50px;
+    border-bottom: #000000 solid 1px;
+}
+
+.container-fluid{
+    width: 100%;
+    
+}
+
+#df{
+    background-color: #D6F6FD;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+
+#df2{
+    background-color: #D6F6FD;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+
+#df3{
+    background-color: #edf0f1;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+
+#recibo{
+    border: #000000 solid 1px;
+    width: 95%;
+} 
+
+#tablita{
+    border: #000000 solid 1px;
+}
+
+
+
+input[type="text"] {
+    
+    border: #989191 solid 1px;
+}

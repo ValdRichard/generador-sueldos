@@ -4,9 +4,7 @@ const diffDays = (date, otherDate) => Math.ceil(Math.abs(date - otherDate) / (10
 
 form.onsubmit = function(e){
     e.preventDefault();
-
     let presentismo = 0.25;
-
     let nombre = document.getElementById("nombre").value;
     let apellido = document.getElementById("apellido").value;
     let cuil = document.getElementById("cuil").value;
@@ -21,7 +19,7 @@ form.onsubmit = function(e){
     let faltasLVJustificado = parseInt(document.getElementById("faltasLVJustificado").value) || 0;
     let faltasS = (parseInt(document.getElementById("faltasS").value)) || 0;
     let faltasSJustificado = parseInt(document.getElementById("faltasSJustificado").value) || 0;
-
+    let sueldoBasico2 = parseInt(document.getElementById("sueldoBasico").value) || 0;
     let horasTrabajadas = 176;
 
     let valorHora = sueldoBasico/horasTrabajadas;
@@ -32,7 +30,13 @@ form.onsubmit = function(e){
 
     faltasSJustificado *= 4 * valorHora
 
+    let valorFaltasLV = faltasLV * 8 *valorHora
+    let valorFaltasS = faltasS * 4 * valorHora
     sueldoBasico -= ((faltasLV * 8) + (faltasS*4)) * valorHora
+    sueldoBasico2 -= valorFaltasLV + valorFaltasS
+
+    console.log(sueldoBasico)
+    console.log(sueldoBasico2)
 
     valorHora = sueldoBasico/horasTrabajadas;
 
@@ -115,21 +119,22 @@ form.onsubmit = function(e){
 
     let vacaciones = diasVacaciones * valorDiaVacaciones;
 
-    jubilacion = sueldoBruto * 0.11
+    var jubilacion = sueldoBruto * 0.11
 
-    ley19032 = sueldoBruto * 0.03
+    var ley19032 = sueldoBruto * 0.03
 
-    obraSocial = sueldoBruto * 0.03
+    var obraSocial = sueldoBruto * 0.03
 
     let sueldoNeto = sueldoBruto - jubilacion - ley19032 - obraSocial
 
-    document.getElementById("carta").innerHTML=`<div class="card bg-secondary m-2">
+    document.getElementById("carta").innerHTML=`<div class="recibo d-flex align-items-center justify-content-center ">
+            <div class="card m-2" id="recibo"> 
                 <div class="card-body">
-                  <h4 class="card-title text-center">Recibo</h4>
+                  <h4 class="card-title text-center text-black mt-3 mb-5">Recibo</h4>
                   <div class="table-responsive">
-                    <table class="table table-primary table-bordered border-black">
+                    <table class="table table-bordered border-black text-black" id="tablita">
                       <thead>
-                        <tr>
+                        <tr class="text-center ">
                           <th scope="col">Fuente</th>
                           <th scope="col">Datos/Paga</th>
                         </tr>
@@ -177,7 +182,7 @@ form.onsubmit = function(e){
                         </tr>
                         <tr class="">
                             <td scope="row">Faltas de Lunes a Viernes:</td>
-                            <td>${faltasLV}</td>
+                            <td>${valorFaltasLV}</td>
                         </tr>
                         <tr class="">
                             <td scope="row">Faltas de Luneas a Viernes, justificadas:</td>
@@ -185,7 +190,7 @@ form.onsubmit = function(e){
                         </tr>
                         <tr class="">
                             <td scope="row">Faltas en Sabado:</td>
-                            <td>${faltasS}</td>
+                            <td>${valorFaltasS}</td>
                         </tr>
                         <tr class="">
                             <td scope="row">Faltas en Sabado, justificadas:</td>
@@ -199,11 +204,14 @@ form.onsubmit = function(e){
                             <td scope="row">Sueldo neto:</td>
                             <td>${sueldoNeto}</td>
                         </tr>
+
                       </tbody>
                     </table>
                   </div>
                 </div>
-              </div>`;
+              </div>
+            </div> `;
+            console.log('No hay errores')
 }
 
 	
@@ -211,10 +219,10 @@ form2.onsubmit = function(e){
 
     e.preventDefault();
 
+
     var nombreArchivo = document.getElementById('nombreArchivo').value
     var formato = document.getElementById('formato').value
     var orientacion = document.getElementById('orientacion').value
-    //credit : https://ekoopmans.github.io/html2pdf.js
     
     var element = document.getElementById('carta'); 
 
