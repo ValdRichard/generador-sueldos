@@ -43,3 +43,11 @@ input[type="text"] {
     
     border: #989191 solid 1px;
 }
+
+.suma td:nth-child(2){
+    color: rgb(51, 255, 0) !important;
+}
+
+.resta td:nth-child(2){
+    color: rgb(255, 0, 0) !important;
+}

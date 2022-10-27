@@ -102,6 +102,9 @@ form.onsubmit = function(e){
 
     let valorDiaVacaciones = (sueldoBasico*1.1 + sueldoBasico*presentismo)/22;
     
+    let produccion = sueldoBasico *0.1 
+    let presen = sueldoBasico *presentismo
+
     let diasVacaciones = 0
     
     
@@ -132,13 +135,13 @@ form.onsubmit = function(e){
                 <div class="card-body">
                   <h4 class="card-title text-center text-black mt-3 mb-5">Recibo</h4>
                   <div class="table-responsive">
-                    <table class="table table-bordered border-black text-black" id="tablita">
-                      <thead>
+                    <table class="table table-striped table-light table-hover table-bordered border-black text-black" id="tablita">
+                        <thead>
                         <tr class="text-center ">
                           <th scope="col">Fuente</th>
                           <th scope="col">Datos/Paga</th>
                         </tr>
-                      </thead>
+                        </thead>
                       <tbody>
                         <tr class="">
                           <td scope="row">Nombre:</td>
@@ -162,47 +165,67 @@ form.onsubmit = function(e){
                         </tr>
                         <tr class="">
                             <td scope="row">Sueldo Basico:</td>
-                            <td>${sueldoBasico}</td>
+                            <td>${sueldoBasico.toFixed(2)}</td>
                         </tr>
-                        <tr class="">
+                        <tr class="suma">
                             <td scope="row">Horas extras al 100%:</td>
-                            <td>${horaExtra100}</td>
+                            <td>+ ${horaExtra100.toFixed(2)}</td>
                         </tr>
-                        <tr class="">
+                        <tr class="suma">
                             <td scope="row">Horas extas al 50%:</td>
-                            <td>${horaExtra50}</td>
+                            <td>+ ${horaExtra50.toFixed(2)}</td>
                         </tr>
-                        <tr class="">
+                        <tr class="suma">
                             <td scope="row">Feriados de Lunes a Viernes:</td>
-                            <td>${feriadosLV}</td>
+                            <td>+ ${feriadosLV.toFixed(2)}</td>
                         </tr>
-                        <tr class="">
+                        <tr class="suma">
                             <td scope="row">Feriados los Sabados:</td>
-                            <td>${feriadosS}</td>
+                            <td>+ ${feriadosS.toFixed(2)}</td>
                         </tr>
-                        <tr class="">
+                        <tr class="resta">
                             <td scope="row">Faltas de Lunes a Viernes:</td>
-                            <td>${valorFaltasLV}</td>
+                            <td>- ${valorFaltasLV.toFixed(2)}</td>
                         </tr>
-                        <tr class="">
+                        <tr class="suma">
                             <td scope="row">Faltas de Luneas a Viernes, justificadas:</td>
-                            <td>${faltasLVJustificado}</td>
+                            <td>+ ${faltasLVJustificado.toFixed(2)}</td>
                         </tr>
-                        <tr class="">
+                        <tr class="resta">
                             <td scope="row">Faltas en Sabado:</td>
-                            <td>${valorFaltasS}</td>
+                            <td>- ${valorFaltasS.toFixed(2)}</td>
                         </tr>
-                        <tr class="">
+                        <tr class="suma">
                             <td scope="row">Faltas en Sabado, justificadas:</td>
-                            <td>${faltasSJustificado}</td>
+                            <td>+ ${faltasSJustificado.toFixed(2)}</td>
+                        </tr>
+                        <tr class="suma">
+                            <td scope="row">Produccion (10%):</td>
+                            <td>+ ${produccion.toFixed(2)}</td>
+                        </tr>
+                        <tr class="suma">
+                            <td scope="row">Presentismo (${presentismo.toFixed(2)*100})%</td>
+                            <td>+ ${presen.toFixed(2)}</td>
                         </tr>
                         <tr class="">
                             <td scope="row">Sueldo bruto:</td>
-                            <td>${sueldoBruto}</td>
+                            <td>${sueldoBruto.toFixed(2)}</td>
+                        </tr>
+                        <tr class="resta">
+                            <td scope="row">Jubilacion: </td>
+                            <td>- ${jubilacion.toFixed(2)}</td>
+                        </tr>                
+                        <tr class="resta">
+                        <td scope="row">Obra social:</td>
+                        <td>- ${obraSocial.toFixed(2)}</td>
+                        </tr>
+                        <tr class="resta">
+                            <td scope="row">Ley 19032: </td>
+                            <td>- ${ley19032.toFixed(2)}</td>
                         </tr>
                         <tr class="">
                             <td scope="row">Sueldo neto:</td>
-                            <td>${sueldoNeto}</td>
+                            <td>${sueldoNeto.toFixed(2)}</td>
                         </tr>
 
                       </tbody>
@@ -230,7 +253,7 @@ form2.onsubmit = function(e){
     //html2pdf().from(element).save();
 
     //custom file name
-    //html2pdf().set({filename: 'code_with_mark_'+js.AutoCode()+'.pdf'}).from(element).save();
+    //html2pdf().set({filename: 'code_with_mark_'+ js.AutoCode()+'.pdf'}).from(element).save();
 
 
     //more custom settings
