@@ -227,7 +227,14 @@ form.onsubmit = function(e){
                             <td scope="row">Sueldo neto:</td>
                             <td>${sueldoNeto.toFixed(2)}</td>
                         </tr>
-
+			<tr class="">
+                            <td scope="row">Vacaciones (tiene ${diasVacaciones} dias de vacaciones) :</td>
+                            <td>${vacaciones.toFixed(2)}</td>
+                        </tr>
+                        <tr class="">
+                            <td scope="row">Aguinaldo:</td>
+                            <td>${aguinaldo.toFixed(2)}</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
