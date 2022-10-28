@@ -170,12 +170,8 @@ form.onsubmit = function(e){
                             <td>${sueldoBasico.toFixed(2)}</td>
                         </tr>
                         <tr class="suma">
-                            <td scope="row">Horas extras al 100%:</td>
-                            <td>+ ${horaExtra100.toFixed(2)}</td>
-                        </tr>
-                        <tr class="suma">
-                            <td scope="row">Horas extas al 50%:</td>
-                            <td>+ ${horaExtra50.toFixed(2)}</td>
+                            <td scope="row">Horas extas (al 50% y 100%):</td>
+                            <td>+ ${(horaExtra100 + horaExtra50).toFixed(2)}</td>
                         </tr>
                         <tr class="suma">
                             <td scope="row">Feriados de Lunes a Viernes:</td>
