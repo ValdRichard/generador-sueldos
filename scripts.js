@@ -139,15 +139,16 @@ form.onsubmit = function(e){
     obraSocial = sueldoBruto * 0.03
     
     
-    
+    var totalDeducciones
+    var sueldoNeto
+    var sueldoBrutoAux
+    sueldoBrutoAux = sueldoBruto
+    totalDeducciones = jubilacion + ley19032 + obraSocial
+    sueldoNeto = sueldoBruto - jubilacion - ley19032 - obraSocial
 
-    var totalDeducciones = jubilacion + ley19032 + obraSocial
-
+    var flag
+    flag = 0
     var aguiYVaca = document.getElementById('aguiYVaca').value
-
-
-    let sueldoNeto = sueldoBruto - jubilacion - ley19032 - obraSocial
-
     document.getElementById("carta").innerHTML=`<div class="recibo d-flex align-items-center justify-content-center ">
             <div class="card m-2" id="recibo"> 
                 <div class="card-body">
@@ -260,37 +261,23 @@ form.onsubmit = function(e){
                 var aguiYVaca = document.getElementById('aguiYVaca').value
                 
             
-                if (aguiYVaca === 'aguinaldo'){
-                    sueldoBruto = sueldoBruto + aguinaldo
-                    jubilacion = sueldoBruto * 0.11
+                if (aguiYVaca === 'aguinaldo' ){
+                    if (flag === 0){
+                      sueldoBruto = sueldoBruto + aguinaldo
+                      jubilacion = sueldoBruto * 0.11
 
-                    ley19032 = sueldoBruto * 0.03
-                
-                    obraSocial = sueldoBruto * 0.03
-                    
-                    
-                    document.getElementById('MOSTRAR').innerHTML= `<div class="container d-flex align-items-center justify-content-center ">
-                    <div class="card m-2" id="tablaaguinaldo"> 
-                    <div class="card-body">
-                      <h4 class="card-title text-center text-black"></h4>
-                      <div class="table-responsive">
-                        <table class="table table-striped table-light table-hover table-bordered border-black text-black" >
-                            <thead>
-                            <tr class="text-center ">
-                              <th scope="col">Fuente</th>
-                              <th scope="col">Datos/Paga</th>
-                            </tr>
-                            </thead>
-                          <tbody>
-                            <tr class="">
-                              <td scope="row">Aguinaldo: </td>
-                              <td>${aguinaldo.toFixed(2)}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
+                      ley19032 = sueldoBruto * 0.03
+                  
+                      obraSocial = sueldoBruto * 0.03
+                                      
+                      totalDeducciones = jubilacion + ley19032 + obraSocial
+                      sueldoNeto = sueldoBruto - jubilacion - ley19032 - obraSocial
+                    }
+                    flag  += 1
+                                        
+                    document.getElementById('MOSTRAR').innerHTML= `<div class="container d-flex align-items-center justify-content-center mt-2">
+                    <div class="card m-2 text-center" id="tablaaguinaldo"> 
+                    <h4>Se actualizó el recibo. Vuelva hacia arriba para verlo</h4>
                 </div> </div>`    
                 document.getElementById("carta").innerHTML=`<div class="recibo d-flex align-items-center justify-content-center ">
                         <div class="card m-2" id="recibo"> 
@@ -367,11 +354,11 @@ form.onsubmit = function(e){
                                     </tr>
                                     <tr class="">
                                         <td scope="row">Sueldo bruto:</td>
-                                        <td>${(sueldoBruto+aguinaldo).toFixed(2)}</td>
+                                        <td>${(sueldoBruto).toFixed(2)}</td>
                                     </tr>
                                     <tr class="resta">
                                         <td scope="row">Jubilacion: </td>
-                                        <td>- ${jubilacion.toFixed(2)}</td>
+                                        <td>- ${jubilacion}</td>
                                     </tr>                
                                     <tr class="resta">
                                     <td scope="row">Obra social:</td>
@@ -401,28 +388,20 @@ form.onsubmit = function(e){
                         </div> `;
                 }
                 else if (aguiYVaca === 'vacaciones'){
-                    document.getElementById('MOSTRAR').innerHTML= `<div class="container d-flex align-items-center justify-content-center ">
-                    <div class="card m-2" id="tablaaguinaldo"> 
-                    <div class="card-body">
-                      <h4 class="card-title text-center text-black" ></h4>
-                      <div class="table-responsive">
-                        <table class="table table-striped table-light table-hover table-bordered border-black text-black">
-                            <thead>
-                            <tr class="text-center ">
-                              <th scope="col">Fuente</th>
-                              <th scope="col">Datos/Paga</th>
-                            </tr>
-                            </thead>
-                          <tbody>
-                            <tr class="">
-                              <td scope="row">Vacaciones: </td>
-                              <td>${vacaciones.toFixed(2)}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
+                    sueldoBruto = sueldoBrutoAux
+                    jubilacion = sueldoBruto * 0.11
+
+                    ley19032 = sueldoBruto * 0.03
+                
+                    obraSocial = sueldoBruto * 0.03
+                                    
+                    totalDeducciones = jubilacion + ley19032 + obraSocial
+                    sueldoNeto = sueldoBruto - jubilacion - ley19032 - obraSocial
+
+                    flag = 0
+                    document.getElementById('MOSTRAR').innerHTML= `<div class="container d-flex align-items-center justify-content-center mt-2">
+                    <div class="card m-2 text-center" id="tablaaguinaldo"> 
+                    <h4>Se actualizó el recibo. Vuelva hacia arriba para verlo</h4>
                 </div> </div>`    
                 document.getElementById("carta").innerHTML=`<div class="recibo d-flex align-items-center justify-content-center ">
                         <div class="card m-2" id="recibo"> 
@@ -534,40 +513,22 @@ form.onsubmit = function(e){
                         </div> `;
                 }
                 else if (aguiYVaca === 'ayv'){
+                  if (flag === 0){
                     sueldoBruto = sueldoBruto + aguinaldo
                     jubilacion = sueldoBruto * 0.11
 
                     ley19032 = sueldoBruto * 0.03
                 
                     obraSocial = sueldoBruto * 0.03
-                    
-    
-                    document.getElementById('MOSTRAR').innerHTML= `<div class="container d-flex align-items-center justify-content-center ">
-                    <div class="card m-2" id="tablaaguinaldo"> 
-                    <div class="card-body">
-                      <h4 class="card-title text-center text-black"></h4>
-                      <div class="table-responsive">
-                        <table class="table table-striped table-light table-hover table-bordered border-black text-black">
-                            <thead>
-                            <tr class="text-center ">
-                              <th scope="col">Fuente</th>
-                              <th scope="col">Datos/Paga</th>
-                            </tr>
-                            </thead>
-                          <tbody>
-                            <tr class="">
-                              <td scope="row">Aguinaldo: </td>
-                              <td>${aguinaldo.toFixed(2)}</td>
-                            </tr>
-                            <tr class="">
-                              <td scope="row">Vacaciones: </td>
-                              <td>${vacaciones.toFixed(2)}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
+                                    
+                    totalDeducciones = jubilacion + ley19032 + obraSocial
+                    sueldoNeto = sueldoBruto - jubilacion - ley19032 - obraSocial
+                  }
+                  flag  += 1
+                   
+                    document.getElementById('MOSTRAR').innerHTML= `<div class="container d-flex align-items-center justify-content-center mt-2">
+                    <div class="card m-2 text-center" id="tablaaguinaldo"> 
+                    <h4>Se actualizó el recibo. Vuelva hacia arriba para verlo</h4>
                 </div> </div>`    
                 document.getElementById("carta").innerHTML=`<div class="recibo d-flex align-items-center justify-content-center ">
                         <div class="card m-2" id="recibo"> 
