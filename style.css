@@ -28,6 +28,10 @@ nav{
     width: 100%;
 }
 
+#tablaaguinaldo{
+    width: 80%;
+}
+
 #recibo{
     border: #000000 solid 1px;
     width: 95%;
