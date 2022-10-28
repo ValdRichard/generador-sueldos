@@ -277,7 +277,7 @@ form.onsubmit = function(e){
                                         
                     document.getElementById('MOSTRAR').innerHTML= `<div class="container d-flex align-items-center justify-content-center mt-2">
                     <div class="card m-2 text-center" id="tablaaguinaldo"> 
-                    <h4>Se actualizó el recibo. Vuelva hacia arriba para verlo</h4>
+                    <h4>Se actualizó el recibo con los datos de aguinaldo. Vuelva hacia arriba para verlo</h4>
                 </div> </div>`    
                 document.getElementById("carta").innerHTML=`<div class="recibo d-flex align-items-center justify-content-center ">
                         <div class="card m-2" id="recibo"> 
@@ -401,7 +401,7 @@ form.onsubmit = function(e){
                     flag = 0
                     document.getElementById('MOSTRAR').innerHTML= `<div class="container d-flex align-items-center justify-content-center mt-2">
                     <div class="card m-2 text-center" id="tablaaguinaldo"> 
-                    <h4>Se actualizó el recibo. Vuelva hacia arriba para verlo</h4>
+                    <h4>Se actualizó el recibo con los datos de vacaciones. Vuelva hacia arriba para verlo</h4>
                 </div> </div>`    
                 document.getElementById("carta").innerHTML=`<div class="recibo d-flex align-items-center justify-content-center ">
                         <div class="card m-2" id="recibo"> 
@@ -528,7 +528,7 @@ form.onsubmit = function(e){
                    
                     document.getElementById('MOSTRAR').innerHTML= `<div class="container d-flex align-items-center justify-content-center mt-2">
                     <div class="card m-2 text-center" id="tablaaguinaldo"> 
-                    <h4>Se actualizó el recibo. Vuelva hacia arriba para verlo</h4>
+                    <h4>Se actualizó el recibo con los datos de aguinaldo y vacaciones. Vuelva hacia arriba para verlo</h4>
                 </div> </div>`    
                 document.getElementById("carta").innerHTML=`<div class="recibo d-flex align-items-center justify-content-center ">
                         <div class="card m-2" id="recibo"> 
