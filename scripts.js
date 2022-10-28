@@ -128,14 +128,12 @@ form.onsubmit = function(e){
 
     var obraSocial = sueldoBruto * 0.03
 
-    var totalDeducciones = jubilacion + ley19032 + obraSocial
-    
     let sueldoNeto = sueldoBruto - jubilacion - ley19032 - obraSocial
 
     document.getElementById("carta").innerHTML=`<div class="recibo d-flex align-items-center justify-content-center ">
             <div class="card m-2" id="recibo"> 
                 <div class="card-body">
-                  <h4 class="card-title text-center text-black mt-3 mb-5">Recibo</h4>
+                  <h4 class="card-title text-center text-black">Recibo</h4>
                   <div class="table-responsive">
                     <table class="table table-striped table-light table-hover table-bordered border-black text-black" id="tablita">
                         <thead>
@@ -224,10 +222,6 @@ form.onsubmit = function(e){
                         <tr class="resta">
                             <td scope="row">Ley 19032: </td>
                             <td>- ${ley19032.toFixed(2)}</td>
-                        </tr>
-			<tr class="resta">
-                            <td scope="row">Total deducciones: </td>
-                            <td>- ${totalDeducciones.toFixed(2)}</td>
                         </tr>
                         <tr class="">
                             <td scope="row">Sueldo neto:</td>
