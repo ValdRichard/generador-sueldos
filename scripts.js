@@ -257,11 +257,130 @@ form.onsubmit = function(e){
             form3.onsubmit = function(e){
 
                 e.preventDefault();
-            
+                
                 var aguiYVaca = document.getElementById('aguiYVaca').value
                 
-            
-                if (aguiYVaca === 'aguinaldo' ){
+                if (aguiYVaca === 'ninguno' ){
+                    flag = 0
+                    sueldoBruto = sueldoBrutoAux
+                    jubilacion = sueldoBruto * 0.11
+
+                    ley19032 = sueldoBruto * 0.03
+                  
+                    obraSocial = sueldoBruto * 0.03
+                                      
+                    totalDeducciones = jubilacion + ley19032 + obraSocial
+                    sueldoNeto = sueldoBruto - jubilacion - ley19032 - obraSocial
+                                        
+                    document.getElementById('MOSTRAR').innerHTML= `<div class="container d-flex align-items-center justify-content-center mt-2">
+                    <div class="card m-2 text-center" id="tablaaguinaldo"> 
+                    <h4>Se actualizó el recibo sin el recibo ni el aguinaldo. Vuelva hacia arriba para verlo</h4>
+                </div> </div>`    
+                document.getElementById("carta").innerHTML=`<div class="recibo d-flex align-items-center justify-content-center ">
+                        <div class="card m-2" id="recibo"> 
+                            <div class="card-body">
+                              <h4 class="card-title text-center text-black">Recibo</h4>
+                              <div class="table-responsive">
+                                <table class="table table-striped table-light table-hover table-bordered border-black text-black" id="tablita">
+                                    <thead>
+                                    <tr class="text-center ">
+                                      <th scope="col">Fuente</th>
+                                      <th scope="col">Datos/Paga</th>
+                                    </tr>
+                                    </thead>
+                                  <tbody>
+                                    <tr class="">
+                                      <td scope="row">Nombre:</td>
+                                      <td>${nombre}</td>
+                                    </tr>
+                                    <tr class="">
+                                        <td scope="row">Apellido:</td>
+                                        <td>${apellido}</td>
+                                    </tr>
+                                    <tr class="">
+                                        <td scope="row">Cuil:</td>
+                                        <td>${cuil}</td>
+                                    </tr>
+                                    <tr class="">
+                                        <td scope="row">Legajo:</td>
+                                        <td>${legajo}</td>
+                                    </tr>
+                                    <tr class="">
+                                        <td scope="row">Fecha de ingreso:</td>
+                                        <td>${fechaIngreso}</td>
+                                    </tr>
+                                    <tr class="">
+                                        <td scope="row">Sueldo Basico:</td>
+                                        <td>${sueldoBasico.toFixed(2)}</td>
+                                    </tr>
+                                    <tr class="suma">
+                                        <td scope="row">Horas extas (al 50% y 100%):</td>
+                                        <td>+ ${(horaExtra100 + horaExtra50).toFixed(2)}</td>
+                                    </tr>
+                                    <tr class="suma">
+                                        <td scope="row">Feriados de Lunes a Viernes:</td>
+                                        <td>+ ${feriadosLV.toFixed(2)}</td>
+                                    </tr>
+                                    <tr class="suma">
+                                        <td scope="row">Feriados los Sabados:</td>
+                                        <td>+ ${feriadosS.toFixed(2)}</td>
+                                    </tr>
+                                    <tr class="resta">
+                                        <td scope="row">Faltas de Lunes a Viernes:</td>
+                                        <td>- ${valorFaltasLV.toFixed(2)}</td>
+                                    </tr>
+                                    <tr class="suma">
+                                        <td scope="row">Faltas de Luneas a Viernes, justificadas:</td>
+                                        <td>+ ${faltasLVJustificado.toFixed(2)}</td>
+                                    </tr>
+                                    <tr class="resta">
+                                        <td scope="row">Faltas en Sabado:</td>
+                                        <td>- ${valorFaltasS.toFixed(2)}</td>
+                                    </tr>
+                                    <tr class="suma">
+                                        <td scope="row">Faltas en Sabado, justificadas:</td>
+                                        <td>+ ${faltasSJustificado.toFixed(2)}</td>
+                                    </tr>
+                                    <tr class="suma">
+                                        <td scope="row">Produccion (10%):</td>
+                                        <td>+ ${produccion.toFixed(2)}</td>
+                                    </tr>
+                                    <tr class="suma">
+                                        <td scope="row">Presentismo (${presentismo.toFixed(2)*100})%</td>
+                                        <td>+ ${presen.toFixed(2)}</td>
+                                    </tr>
+                                    <tr class="">
+                                        <td scope="row">Sueldo bruto:</td>
+                                        <td>${(sueldoBruto).toFixed(2)}</td>
+                                    </tr>
+                                    <tr class="resta">
+                                        <td scope="row">Jubilacion: </td>
+                                        <td>- ${jubilacion.toFixed(2)}</td>
+                                    </tr>                
+                                    <tr class="resta">
+                                    <td scope="row">Obra social:</td>
+                                    <td>- ${obraSocial.toFixed(2)}</td>
+                                    </tr>
+                                    <tr class="resta">
+                                        <td scope="row">Ley 19032: </td>
+                                        <td>- ${ley19032.toFixed(2)}</td>
+                                    </tr>
+                        <tr class="resta">
+                                        <td scope="row">Total de deducciones: </td>
+                                        <td>- ${totalDeducciones.toFixed(2)}</td>
+                                    </tr>
+                                    <tr class="">
+                                        <td scope="row">Sueldo neto:</td>
+                                        <td>${sueldoNeto.toFixed(2)}</td>
+                                    </tr>                        
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div> `;
+                }
+                else if (aguiYVaca === 'aguinaldo' ){
                     if (flag === 0){
                       sueldoBruto = sueldoBruto + aguinaldo
                       jubilacion = sueldoBruto * 0.11
@@ -358,7 +477,7 @@ form.onsubmit = function(e){
                                     </tr>
                                     <tr class="resta">
                                         <td scope="row">Jubilacion: </td>
-                                        <td>- ${jubilacion}</td>
+                                        <td>- ${jubilacion.toFixed(2)}</td>
                                     </tr>                
                                     <tr class="resta">
                                     <td scope="row">Obra social:</td>
