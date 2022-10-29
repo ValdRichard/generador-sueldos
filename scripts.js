@@ -351,7 +351,7 @@ form.onsubmit = function(e){
                                     </tr>
                                     <tr class="">
                                         <td scope="row">Sueldo bruto:</td>
-                                        <td>${(sueldoBruto).toFixed(2)}</td>
+                                        <td>${sueldoBruto.toFixed(2)}</td>
                                     </tr>
                                     <tr class="resta">
                                         <td scope="row">Jubilacion: </td>
@@ -473,7 +473,7 @@ form.onsubmit = function(e){
                                     </tr>
                                     <tr class="">
                                         <td scope="row">Sueldo bruto:</td>
-                                        <td>${(sueldoBruto).toFixed(2)}</td>
+                                        <td>${sueldoBruto.toFixed(2)}</td>
                                     </tr>
                                     <tr class="resta">
                                         <td scope="row">Jubilacion: </td>
